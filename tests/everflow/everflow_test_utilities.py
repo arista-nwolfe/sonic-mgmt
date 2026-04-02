@@ -760,8 +760,8 @@ def verify_mirror_packets_on_recircle_port(self, ptfadapter, setup, mirror_sessi
                 valid_across_namespace=valid_across_namespace,
                 erspan_ip_ver=erspan_ip_ver
             )
-            total_pkts_sent = { k: total_pkts_sent.get(k, 0) + num_pkts_sent.get(k, 0)
-                                for k in total_pkts_sent.keys() | num_pkts_sent.keys() }
+            total_pkts_sent = {k: total_pkts_sent.get(k, 0) + num_pkts_sent.get(k, 0)
+                               for k in total_pkts_sent.keys() | num_pkts_sent.keys()}
 
         if duthost.is_multi_asic:
             expected_pkts = total_pkts_sent[(duthost, asic_ns)]
@@ -1382,7 +1382,7 @@ class BaseEverflowTest(object):
             if src_port_metadata_map[src_port][0]:
                 mirror_packet_sent[packet.Ether].dst = src_port_metadata_map[src_port][0]
             ptfadapter.dataplane.flush()
-            src_port_dut_namespace = ( src_port_metadata_map[src_port][2], src_port_metadata_map[src_port][3] )
+            src_port_dut_namespace = (src_port_metadata_map[src_port][2], src_port_metadata_map[src_port][3])
             num_pkts_sent[src_port_dut_namespace] = num_pkts_sent.get(src_port_dut_namespace, 0) + 1
             testutils.send(ptfadapter, src_port, mirror_packet_sent)
 
